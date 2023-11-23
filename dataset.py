@@ -87,7 +87,8 @@ def split_data(args):
 
         if args.test_perc > 0:
             index_list_test.append(data_name)
-            first_subset, second_subset, first_subset_indexes, second_subset_indexes = split_array_with_percentage(data, args.test_perc)
+            percentage = (args.test_perc / (args.test_perc + args.val_perc)) * 100
+            first_subset, second_subset, first_subset_indexes, second_subset_indexes = split_array_with_percentage(second_subset, percentage)
             index_list_test.extend(first_subset_indexes)
             first_subset_indexes = np.array([f"{data_name}{index}" for index in first_subset_indexes])
             if dataarrayX_test is None:
