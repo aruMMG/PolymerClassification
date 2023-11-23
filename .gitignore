@@ -1,0 +1,10 @@
+plots/*
+PrePlot
+logFile/*
+data/*
+preprocess/HDPE
+preprocess/LDPE
+preprocess/PET
+preprocess/PP
+preprocess/other
+preprocess/open_spcey
