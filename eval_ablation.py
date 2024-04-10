@@ -10,7 +10,7 @@ from torch import nn
 from torchvision import transforms
 import numpy as np
 from dataset import IRDatasetFromNames, dataset_from_txt
-from model import SpectroscopyTransformerEncoder, SpectroscopyTransformerEncoder_PreT, InceptionNetwork, InceptionNetwork_PreT, FCNet, PSDNResNet
+from model_ablation import SpectroscopyTransformerEncoder, SpectroscopyTransformerEncoder_PreT, InceptionNetwork, InceptionNetwork_PreT, FCNet, PSDNResNet
 from utils import plot9Data, save_arguments_to_file, load_args_from_txt
 
 import os
@@ -20,7 +20,7 @@ def test(args, model_class, test_dataloader, model_weights_path, n_classes=2, ar
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Create an instance of the model
-    if arch=="incep" or arch=="incep_pre" or arch=="res" or arch=="FC":
+    if arch=="incep" or arch=="incep_avg" or arch=="res" or arch=="FC":
         model = model_class(num_classes=n_classes).to(device)
     else:
         model = model_class(input_size=args.input_size, num_classes=n_classes, num_transformer_layers=args.encoders, mlp_size=args.mlp_size, patch_size=args.patch_size, embedding_dim=args.emb_dim, num_heads=args.num_heads).to(device)
@@ -158,13 +158,13 @@ if __name__=="__main__":
     print(options)
     if args.model=="all":
         pass
-    elif args.model=="trans_pre":
+    elif args.model=="trans_avg":
         print("Using SpectroscopyTransformerEncoder_PreT model")
         model = SpectroscopyTransformerEncoder_PreT
     elif args.model=="incep":
         print("Using InceptionNetwork model")
         model = InceptionNetwork
-    elif args.model=="incep_pre":
+    elif args.model=="incep_avg":
         print("Using InceptionNetwork_PreT model")
         model = InceptionNetwork_PreT
     elif args.model=="trans":

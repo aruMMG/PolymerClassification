@@ -10,7 +10,7 @@ from torch import nn
 from torchvision import transforms
 import numpy as np
 from dataset import IRDatasetFromNames, dataset_from_txt
-from model import SpectroscopyTransformerEncoder, SpectroscopyTransformerEncoder_PreT, InceptionNetwork, InceptionNetwork_PreT, FCNet, PSDNResNet
+from model_ablation import SpectroscopyTransformerEncoder, SpectroscopyTransformerEncoder_PreT, InceptionNetwork, InceptionNetwork_PreT, FCNet, PSDNResNet
 from utils import plot9Data, save_arguments_to_file, load_args_from_txt
 from eval import test
 
@@ -18,7 +18,7 @@ import os
 import csv
 
 def train(args, model, train_dataloader,val_dataloader, n_classes=2, device='cpu', arch="trans_pre"):
-    if arch=="incep" or arch=="incep_pre" or arch=="FC" or arch=="res":
+    if arch=="incep" or arch=="incep_avg" or arch=="FC" or arch=="res":
         model = model(num_classes=n_classes)
     else:
         model = model(num_classes=n_classes, num_transformer_layers=args.encoders, mlp_size=args.mlp_size, patch_size=args.patch_size, embedding_dim=args.emb_dim, num_heads=args.num_heads, pos_fix=args.pos_fix)
@@ -196,13 +196,13 @@ if __name__=="__main__":
 
     if args.model=="all":
         pass
-    elif args.model=="trans_pre":
+    elif args.model=="trans_avg":
         print("Using SpectroscopyTransformerEncoder_PreT model")
         model = SpectroscopyTransformerEncoder_PreT
     elif args.model=="incep":
         print("Using InceptionNetwork model")
         model = InceptionNetwork
-    elif args.model=="incep_pre":
+    elif args.model=="incep_avg":
         print("Using InceptionNetwork_PreT model")
         model = InceptionNetwork_PreT
     elif args.model=="trans":

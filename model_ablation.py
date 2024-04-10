@@ -208,17 +208,17 @@ class PreBlock(torch.nn.Module):
     """
     def __init__(self):
         super().__init__()
-        self.pool1 = torch.nn.AvgPool1d(kernel_size=5, stride=1, padding=2)
-        self.pool2 = torch.nn.AvgPool1d(kernel_size=13, stride=1, padding=6)
-        self.pool3 = torch.nn.AvgPool1d(kernel_size=7, stride=1, padding=3)
+        # self.pool1 = torch.nn.AvgPool1d(kernel_size=5, stride=1, padding=2)
+        # self.pool2 = torch.nn.AvgPool1d(kernel_size=13, stride=1, padding=6)
+        # self.pool3 = torch.nn.AvgPool1d(kernel_size=7, stride=1, padding=3)
         self.ln_1 = torch.nn.LayerNorm(4000)
 
     def forward(self, x):
 
         x = x.squeeze(dim=1)
-        x = self.pool1(x)
-        x = self.pool2(x)
-        x = self.pool3(x)
+        # x = self.pool1(x)
+        # x = self.pool2(x)
+        # x = self.pool3(x)
         x = self.ln_1(x)
         x = x.unsqueeze(dim=1)
 
