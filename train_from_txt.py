@@ -143,8 +143,8 @@ if __name__=="__main__":
     parser.add_argument('--log_name', type=str, default='NoName', help='Save log file name')
     parser.add_argument('--data_dir', type=str, default='data/data_warwick/', help='input data directoy containing .npy files')
     # parser.add_argument('--baseline', default=True, help='Is it a baseline corected data.')
-    parser.add_argument('--baseline', action='store_true', help='Is it a baseline corected data.')
-    parser.add_argument('--FC', action='store_true', help='Set the dataset format to (n, l). Where n is number of sample and l is length.')
+    parser.add_argument('--baseline', action='store_true', help='Use baseline correction')
+    parser.add_argument('--FC', action='store_true', help='Using FNN')
     parser.add_argument('--weighted_loss', action='store_true', help='Set the weighted loss to true.')
 
 
@@ -155,7 +155,7 @@ if __name__=="__main__":
 
 
     parser.add_argument('--epochs', default=20, type=int, help='number of epochs')
-    parser.add_argument('--folds', default=5, type=int, help='number of epochs')
+    parser.add_argument('--folds', default=5, type=int, help='number of folds')
     parser.add_argument('--plot', default=True, type=bool, help='plot fake and real dataa examples if true')
     parser.add_argument('--plot_wrong', default=True, type=bool, help='plot data when predicted wrong if true')
     parser.add_argument('--save_path', type=str, default='default', help='.csv file to save CM')

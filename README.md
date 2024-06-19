@@ -3,6 +3,7 @@ Transformer based model for recycling plastic classification using Fourier Trans
 ![Alt text](https://github.com/aruMMG/PolymerClassification/blob/main/asset/overview.jpg?raw=true "Title")
 ## Results
 ![Alt text](https://github.com/aruMMG/PolymerClassification/blob/main/asset/accuracy.jpg?raw=true "Title")
+
 Compares the accuracy of two neural network architectures—CNN and our proposed Transformer-based model—under different conditions on test data. The "Base" is the initial model without any additional preprocessing module. Then the performance evaluated with additioanl preprocessing modules: average pooling (Base + Avg), layer normalisation (Base + LN), and combination of all preprocessing steps (Base + Pre). The dashed line shows the models' performance without baseline correction. The proposed preprocessing module significantly improve the models' performance and especially the proposed Transformer-based model outperforms the CNN in all different conditions.
 ## Getting started
 To getting started plese follow:
